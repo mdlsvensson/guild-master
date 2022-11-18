@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2urgr6wmquxf"]
+
+[ext_resource type="PackedScene" uid="uid://cg5vl0voedbfw" path="res://scenes/ui/ui.tscn" id="1_8umej"]
+[ext_resource type="Script" path="res://scenes/world/world.gd" id="1_xffl5"]
+[ext_resource type="PackedScene" uid="uid://wvcr1hu05qv6" path="res://scenes/unit/unit.tscn" id="3_lgrp4"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_xffl5")
+
+[node name="UI" parent="." instance=ExtResource("1_8umej")]
+
+[node name="Unit" parent="." instance=ExtResource("3_lgrp4")]
+offset_left = 391.0
+offset_top = 245.0
+offset_right = 391.0
+offset_bottom = 245.0
