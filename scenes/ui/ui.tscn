@@ -18,17 +18,26 @@ script = ExtResource("2_vvjqe")
 play_pause_button = NodePath("Time/TimeControls/PlayPauseButton")
 fast_forward_button = NodePath("Time/TimeControls/FastForwardButton")
 time_display = NodePath("Time/TimeDisplay")
+date_display = NodePath("Date/DateDisplay")
+year_display = NodePath("Date/YearDisplay")
+combat_button = NodePath("MarginContainer/VBoxContainer/CombatButton")
+
+[node name="TimePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1728.0
+offset_right = 1920.0
+offset_bottom = 47.0
 
 [node name="Time" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1857.0
-offset_top = 3.0
+offset_left = 1876.0
+offset_top = -2.0
 offset_right = 1917.0
-offset_bottom = 49.0
+offset_bottom = 44.0
 
 [node name="TimeDisplay" type="Label" parent="Time"]
 layout_mode = 2
-offset_right = 60.0
+offset_right = 41.0
 offset_bottom = 26.0
 text = "00:00"
 horizontal_alignment = 1
@@ -36,24 +45,72 @@ horizontal_alignment = 1
 [node name="TimeControls" type="HBoxContainer" parent="Time"]
 layout_mode = 2
 offset_top = 26.0
-offset_right = 60.0
+offset_right = 41.0
 offset_bottom = 46.0
 alignment = 1
 
 [node name="PlayPauseButton" type="TextureButton" parent="Time/TimeControls"]
 layout_mode = 2
-offset_left = 10.0
-offset_right = 30.0
+offset_right = 20.0
 offset_bottom = 20.0
 texture_normal = ExtResource("3_6fbr6")
 stretch_mode = 3
 
 [node name="FastForwardButton" type="TextureButton" parent="Time/TimeControls"]
 layout_mode = 2
-offset_left = 30.0
-offset_right = 50.0
+offset_left = 20.0
+offset_right = 40.0
 offset_bottom = 20.0
 toggle_mode = true
 texture_normal = ExtResource("6_41liy")
 texture_pressed = ExtResource("7_nak35")
 stretch_mode = 3
+
+[node name="Date" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1733.0
+offset_top = -2.0
+offset_right = 1852.0
+offset_bottom = 50.0
+
+[node name="DateDisplay" type="Label" parent="Date"]
+layout_mode = 2
+offset_right = 119.0
+offset_bottom = 26.0
+text = "1st of Summer"
+horizontal_alignment = 2
+
+[node name="YearDisplay" type="Label" parent="Date"]
+layout_mode = 2
+offset_top = 26.0
+offset_right = 119.0
+offset_bottom = 52.0
+text = "Year 0"
+horizontal_alignment = 2
+
+[node name="SidePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 235.0
+offset_bottom = 1075.0
+
+[node name="CombatButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 230.0
+offset_bottom = 31.0
+text = "Combat"
