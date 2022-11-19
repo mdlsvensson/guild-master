@@ -53,5 +53,7 @@ func _advance_time(delta: float) -> void:
 			if Global.date.season == "Spring": Global.date.season = "Summer"
 			Global.date.day = 1
 
-		_ui.update_time_display(1)
+		_ui.update_time_display()
+		_ui.update_date_display()
+		_ui.update_year_display()
 
