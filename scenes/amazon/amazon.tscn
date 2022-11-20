@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://yxiklelnnc54"]
+
+[ext_resource type="Script" path="res://scripts/unit.gd" id="1_xp17l"]
+[ext_resource type="Texture2D" uid="uid://0yplf6nqdus" path="res://assets/portrait/amazon/amazon_128_128.png" id="2_5dxic"]
+[ext_resource type="Texture2D" uid="uid://dne0abpleqy47" path="res://assets/elements/bars/hp/hp_under.png" id="3_8hvt4"]
+[ext_resource type="Texture2D" uid="uid://cpp7f2rwp4aau" path="res://assets/elements/bars/hp/hp_progress.png" id="4_h4jw8"]
+[ext_resource type="Texture2D" uid="uid://b77ia0pm2cf0u" path="res://assets/elements/bars/mp/mp_under.png" id="5_f41uf"]
+[ext_resource type="Texture2D" uid="uid://bqceadvhkbmm0" path="res://assets/elements/bars/mp/mp_progress.png" id="6_ucpkl"]
+[ext_resource type="Texture2D" uid="uid://j3s65bvkjg3f" path="res://assets/spells/moonlight/button/moonlight_32_32_button.png" id="7_u42da"]
+[ext_resource type="Texture2D" uid="uid://dba5gjfbvetce" path="res://assets/spells/moonlight/button/moonlight_32_32_hover.png" id="8_gb531"]
+
+[node name="Amazon" type="PanelContainer"]
+offset_right = 134.0
+offset_bottom = 187.0
+script = ExtResource("1_xp17l")
+baseline_hp = 100
+baseline_mp = 50
+power = 13
+brawn = 13
+finesse = 20
+agility = 26
+resolution = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_right = 136.0
+offset_bottom = 189.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 132.0
+offset_bottom = 185.0
+theme_override_constants/separation = 2
+
+[node name="Portrait" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("2_5dxic")
+stretch_mode = 2
+
+[node name="Bars" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 130.0
+offset_right = 128.0
+offset_bottom = 147.0
+theme_override_constants/separation = 1
+
+[node name="HP" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/Bars"]
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 8.0
+value = 100.0
+texture_under = ExtResource("3_8hvt4")
+texture_progress = ExtResource("4_h4jw8")
+
+[node name="MP" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/Bars"]
+layout_mode = 2
+offset_top = 9.0
+offset_right = 128.0
+offset_bottom = 17.0
+value = 100.0
+texture_under = ExtResource("5_f41uf")
+texture_progress = ExtResource("6_ucpkl")
+
+[node name="Abilities" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 149.0
+offset_right = 128.0
+offset_bottom = 181.0
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Abilities"]
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+texture_normal = ExtResource("7_u42da")
+texture_pressed = ExtResource("7_u42da")
+texture_hover = ExtResource("8_gb531")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer/Abilities"]
+layout_mode = 2
+offset_left = 32.0
+offset_right = 64.0
+offset_bottom = 32.0
+texture_normal = ExtResource("7_u42da")
+texture_pressed = ExtResource("7_u42da")
+texture_hover = ExtResource("8_gb531")
+
+[node name="TextureButton3" type="TextureButton" parent="MarginContainer/VBoxContainer/Abilities"]
+layout_mode = 2
+offset_left = 64.0
+offset_right = 96.0
+offset_bottom = 32.0
+texture_normal = ExtResource("7_u42da")
+texture_pressed = ExtResource("7_u42da")
+texture_hover = ExtResource("8_gb531")
+
+[node name="TextureButton4" type="TextureButton" parent="MarginContainer/VBoxContainer/Abilities"]
+layout_mode = 2
+offset_left = 96.0
+offset_right = 128.0
+offset_bottom = 32.0
+texture_normal = ExtResource("7_u42da")
+texture_pressed = ExtResource("7_u42da")
+texture_hover = ExtResource("8_gb531")
