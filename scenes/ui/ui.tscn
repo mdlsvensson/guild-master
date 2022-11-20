@@ -108,9 +108,18 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 235.0
 offset_bottom = 1075.0
+theme_override_constants/separation = 4
 
-[node name="CombatButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="GuildButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 offset_right = 230.0
 offset_bottom = 31.0
+text = "Guild
+"
+
+[node name="CombatButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 35.0
+offset_right = 230.0
+offset_bottom = 66.0
 text = "Combat"
