@@ -13,9 +13,21 @@ _global_script_classes=[{
 "class": &"MyClass",
 "language": &"GDScript",
 "path": "res://script_templates/class.gd"
+}, {
+"base": "RefCounted",
+"class": &"Spell",
+"language": &"GDScript",
+"path": "res://scripts/spell.gd"
+}, {
+"base": "PanelContainer",
+"class": &"Unit",
+"language": &"GDScript",
+"path": "res://scripts/unit.gd"
 }]
 _global_script_class_icons={
-"MyClass": ""
+"MyClass": "",
+"Spell": "",
+"Unit": ""
 }
 
 [application]
