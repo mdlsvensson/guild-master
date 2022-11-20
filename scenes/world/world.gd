@@ -9,12 +9,15 @@ func get_class() -> String: return 'World'
 #}
 #const TEST_4 = 1
 @export var ui: NodePath
+@export var guild_screen: NodePath
+@export var combat_screen: NodePath
 var time: float = 0
 var last_full_second: int = 0
 var _ui: Control
+var _guild_screen: Control
+var _combat_screen: Control
+var _guild: Array[Unit]
 @onready var onready = "onready"
-
-
 
 func _init() -> void:
 	pass
@@ -22,6 +25,14 @@ func _init() -> void:
 func _ready() -> void:
 	_ui = get_node_or_null(ui)
 	if !_ui: printerr('Path to UI node returned null | [%s]' % get_script())
+	_guild_screen = get_node_or_null(guild_screen)
+	if !_guild_screen: printerr('Path to GuildScreen node returned null | [%s]' % get_script())
+	_combat_screen = get_node_or_null(combat_screen)
+	if !_combat_screen: printerr('Path to CombatScreen node returned null | [%s]' % get_script())
+
+	_guild = [get_node('Combat/Amazon')]
+
+
 
 func _process(delta: float) -> void:
 	if !Global.paused: _advance_time(delta)
