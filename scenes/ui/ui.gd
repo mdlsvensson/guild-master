@@ -7,12 +7,14 @@ var _time_display: Label
 var _date_display: Label
 var _year_display: Label
 var _combat_button: Button
-@export var play_pause_button: NodePath
-@export var fast_forward_button: NodePath
-@export var time_display: NodePath
-@export var date_display: NodePath
-@export var year_display: NodePath
-@export var combat_button: NodePath
+var _guild_button: Button
+@export_node_path(TextureButton) var play_pause_button: NodePath
+@export_node_path(TextureButton) var fast_forward_button: NodePath
+@export_node_path(Label) var time_display: NodePath
+@export_node_path(Label) var date_display: NodePath
+@export_node_path(Label) var year_display: NodePath
+@export_node_path(Button) var guild_button: NodePath
+@export_node_path(Button) var combat_button: NodePath
 
 func _ready() -> void:
 	_play_pause_button = get_node_or_null(play_pause_button)
@@ -32,6 +34,9 @@ func _ready() -> void:
 
 	_combat_button = get_node_or_null(combat_button)
 	if !_combat_button: printerr('No valid path to CombatButton node | [%s]' % get_script())
+
+	_guild_button = get_node_or_null(guild_button)
+	if !_guild_button: printerr('No valid path to GuildButton node | [%s]' % get_script())
 
 	var error_1 = _play_pause_button.pressed.connect(_on_play_pause_button_pressed)
 	if error_1: printerr("There was an error connecting _play_pause_button 'pressed' signal in %s" % get_script())
