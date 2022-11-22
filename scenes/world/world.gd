@@ -1,5 +1,5 @@
-extends Node
-func get_class() -> String: return 'World'
+extends Preload
+func get_class() -> String: return "World"
 # A template for gdscript classes following the Godot documentation style guide
 
 #signal test_1
@@ -8,9 +8,9 @@ func get_class() -> String: return 'World'
 #	test_3,
 #}
 #const TEST_4 = 1
-@export var ui: NodePath
-@export var guild_screen: NodePath
-@export var combat_screen: NodePath
+@export_node_path(Control) var ui: NodePath
+@export_node_path(Control) var guild_screen: NodePath
+@export_node_path(Control) var combat_screen: NodePath
 var time: float = 0
 var last_full_second: int = 0
 var _ui: Control
@@ -30,9 +30,11 @@ func _ready() -> void:
 	_combat_screen = get_node_or_null(combat_screen)
 	if !_combat_screen: printerr('Path to CombatScreen node returned null | [%s]' % get_script())
 
-	_guild = [get_node('Combat/Amazon')]
-
-
+	for unit in _combat_screen.get_children():
+		_guild.append(unit)
+		var texture_button = TextureButton.new()
+		texture_button.texture_normal = _art["portraits"][String(unit.name).to_snake_case()]["64"]
+		_guild_screen.get_node('MarginContainer/PanelContainer/GridContainer').add_child(texture_button)
 
 func _process(delta: float) -> void:
 	if !Global.paused: _advance_time(delta)
