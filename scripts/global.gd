@@ -1,6 +1,11 @@
 extends Node
 # Global variables autoload
 
+enum screens {
+	GUILD,
+	COMBAT
+}
+var screen: int = screens.GUILD
 var paused: bool = false
 var time_scale: int = 1
 var time: Dictionary = {
