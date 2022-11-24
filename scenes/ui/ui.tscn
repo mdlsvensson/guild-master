@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cg5vl0voedbfw"]
+[gd_scene load_steps=11 format=3 uid="uid://cg5vl0voedbfw"]
 
 [ext_resource type="Theme" uid="uid://c6ujishe8ryu7" path="res://theme.tres" id="1_t6dil"]
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="2_vvjqe"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dyomro7mlm06p" path="res://assets/elements/screen_history/back_hover.png" id="7_g8tg8"]
 [ext_resource type="Texture2D" uid="uid://b4wxtry3ckql4" path="res://assets/elements/time_controls/fast_forward_button_pressed.png" id="7_nak35"]
 [ext_resource type="Texture2D" uid="uid://csn8k5khulx6h" path="res://assets/elements/screen_history/forward_hover.png" id="9_7kmn0"]
+[ext_resource type="PackedScene" uid="uid://d0vbn0kev6e43" path="res://scenes/view/view.tscn" id="10_pv0xp"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -17,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_t6dil")
 script = ExtResource("2_vvjqe")
 play_pause_button = NodePath("Time/TimeControls/PlayPauseButton")
@@ -24,41 +26,47 @@ fast_forward_button = NodePath("Time/TimeControls/FastForwardButton")
 time_display = NodePath("Time/TimeDisplay")
 date_display = NodePath("Date/DateDisplay")
 year_display = NodePath("Date/YearDisplay")
-guild_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/GuildButton")
-combat_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/CombatButton")
-back_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/BackButton")
-forward_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ForwardButton")
+guild_button = NodePath("SideBar/VBoxContainer/VBoxContainer/GuildButton")
+combat_button = NodePath("SideBar/VBoxContainer/VBoxContainer/CombatButton")
+back_button = NodePath("SideBar/VBoxContainer/HBoxContainer/BackButton")
+forward_button = NodePath("SideBar/VBoxContainer/HBoxContainer/ForwardButton")
 
 [node name="TimePanel" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 1728.0
 offset_right = 1920.0
 offset_bottom = 47.0
 
 [node name="Time" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 1876.0
 offset_top = -2.0
 offset_right = 1917.0
 offset_bottom = 44.0
 
 [node name="TimeDisplay" type="Label" parent="Time"]
+layout_mode = 2
 offset_right = 41.0
 offset_bottom = 26.0
 text = "00:00"
 horizontal_alignment = 1
 
 [node name="TimeControls" type="HBoxContainer" parent="Time"]
+layout_mode = 2
 offset_top = 26.0
 offset_right = 41.0
 offset_bottom = 46.0
 alignment = 1
 
 [node name="PlayPauseButton" type="TextureButton" parent="Time/TimeControls"]
+layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
 texture_normal = ExtResource("3_6fbr6")
 stretch_mode = 3
 
 [node name="FastForwardButton" type="TextureButton" parent="Time/TimeControls"]
+layout_mode = 2
 offset_left = 20.0
 offset_right = 40.0
 offset_bottom = 20.0
@@ -68,18 +76,21 @@ texture_pressed = ExtResource("7_nak35")
 stretch_mode = 3
 
 [node name="Date" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 1733.0
 offset_top = -2.0
 offset_right = 1852.0
 offset_bottom = 50.0
 
 [node name="DateDisplay" type="Label" parent="Date"]
+layout_mode = 2
 offset_right = 119.0
 offset_bottom = 26.0
 text = "1st of Summer"
 horizontal_alignment = 2
 
 [node name="YearDisplay" type="Label" parent="Date"]
+layout_mode = 2
 offset_top = 26.0
 offset_right = 119.0
 offset_bottom = 52.0
@@ -87,10 +98,12 @@ text = "Year 0"
 horizontal_alignment = 2
 
 [node name="SidePanel" type="Panel" parent="."]
+layout_mode = 0
 offset_right = 240.0
 offset_bottom = 1080.0
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="SideBar" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 240.0
 offset_bottom = 1080.0
 theme_override_constants/margin_left = 5
@@ -98,47 +111,57 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SideBar"]
+layout_mode = 2
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 235.0
 offset_bottom = 1075.0
 theme_override_constants/separation = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SideBar/VBoxContainer"]
+layout_mode = 2
 offset_right = 230.0
 offset_bottom = 32.0
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="BackButton" type="TextureButton" parent="SideBar/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 offset_left = 68.0
 offset_right = 100.0
 offset_bottom = 32.0
 texture_normal = ExtResource("6_4msqe")
 texture_hover = ExtResource("7_g8tg8")
 
-[node name="ForwardButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ForwardButton" type="TextureButton" parent="SideBar/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 offset_left = 130.0
 offset_right = 162.0
 offset_bottom = 32.0
 texture_normal = ExtResource("7_4bcdm")
 texture_hover = ExtResource("9_7kmn0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SideBar/VBoxContainer"]
+layout_mode = 2
 offset_top = 36.0
 offset_right = 230.0
 offset_bottom = 102.0
 theme_override_constants/separation = 4
 
-[node name="GuildButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="GuildButton" type="Button" parent="SideBar/VBoxContainer/VBoxContainer"]
+layout_mode = 2
 offset_right = 230.0
 offset_bottom = 31.0
 text = "Guild
 "
 
-[node name="CombatButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="CombatButton" type="Button" parent="SideBar/VBoxContainer/VBoxContainer"]
+layout_mode = 2
 offset_top = 35.0
 offset_right = 230.0
 offset_bottom = 66.0
 text = "Combat"
+
+[node name="View" parent="." instance=ExtResource("10_pv0xp")]
+layout_mode = 0
