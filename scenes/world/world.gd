@@ -24,14 +24,21 @@ func _ready() -> void:
 	var error_1 = _ui.screen_change.connect(_on_screen_change)
 	if error_1: printerr("There was an error connecting _ui 'screen_change' signal in %s" % get_script())
 
+	var heroes = [Amazon.new(), Lifestealer.new()]
+
 	_screens.append(_guild_screen)
 	_screens.append(_combat_screen)
-	_guild.append(Amazon.new())
+	_guild.append_array(heroes)
+
 
 	for unit in _guild:
-		var texture_button = TextureButton.new()
-		texture_button.texture_normal = unit.get_portrait("64")
-		_guild_screen.add_card_to_flow(texture_button)
+		var guild_screen_hero = preload("res://scenes/guild_screen_hero/guild_screen_hero.tscn").instantiate()
+		guild_screen_hero.texture_normal = unit.get_portrait("64")
+		_guild_screen.add_card_to_flow(guild_screen_hero)
+		guild_screen_hero.set_hero(unit)
+
+		var error_2 = guild_screen_hero.hero_pressed.connect(_on_guild_screen_hero_hero_pressed)
+		if error_2: printerr("There was an error connecting guild_screen_hero 'hero_pressed' signal in %s" % get_script())
 
 		var card = preload("res://scenes/card/card.tscn").instantiate()
 		_combat_screen.add_child(card)
@@ -71,3 +78,6 @@ func _on_screen_change() -> void:
 	match Global.screen:
 		Global.screens.GUILD: _guild_screen.show()
 		Global.screens.COMBAT: _combat_screen.show()
+
+func _on_guild_screen_hero_hero_pressed(hero: Unit) -> void:
+	pass
