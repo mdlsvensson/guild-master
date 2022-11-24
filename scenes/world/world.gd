@@ -1,13 +1,7 @@
-extends Preload
+extends Node2D
 func get_class() -> String: return "World"
 # A template for gdscript classes following the Godot documentation style guide
 
-#signal test_1
-
-#enum test_2 {
-#	test_3,
-#}
-#const TEST_4 = 1
 @export_node_path(Control) var ui: NodePath
 @export_node_path(Control) var guild_screen: NodePath
 @export_node_path(Control) var combat_screen: NodePath
@@ -17,10 +11,7 @@ var _ui: Control
 var _guild_screen: Control
 var _combat_screen: Control
 var _guild: Array[Unit]
-@onready var onready = "onready"
-
-func _init() -> void:
-	pass
+var _screens: Array[Control]
 
 func _ready() -> void:
 	_ui = get_node_or_null(ui)
@@ -30,20 +21,24 @@ func _ready() -> void:
 	_combat_screen = get_node_or_null(combat_screen)
 	if !_combat_screen: printerr('Path to CombatScreen node returned null | [%s]' % get_script())
 
-	for unit in _combat_screen.get_children():
-		_guild.append(unit)
+	var error_1 = _ui.screen_change.connect(_on_screen_change)
+	if error_1: printerr("There was an error connecting _ui 'screen_change' signal in %s" % get_script())
+
+	_screens.append(_guild_screen)
+	_screens.append(_combat_screen)
+	_guild.append(Amazon.new())
+
+	for unit in _guild:
 		var texture_button = TextureButton.new()
-		texture_button.texture_normal = _art["portraits"][String(unit.name).to_snake_case()]["64"]
-		_guild_screen.get_node('MarginContainer/PanelContainer/GridContainer').add_child(texture_button)
+		texture_button.texture_normal = unit.get_portrait("64")
+		_guild_screen.add_card_to_flow(texture_button)
+
+		var card = preload("res://scenes/card/card.tscn").instantiate()
+		_combat_screen.add_child(card)
+		card.set_unit(unit)
 
 func _process(delta: float) -> void:
 	if !Global.paused: _advance_time(delta)
-
-func _physics_process(delta: float) -> void:
-	pass
-
-func public() -> void:
-	pass
 
 func _advance_time(delta: float) -> void:
 	time += (delta * Global.time_scale)
@@ -70,3 +65,9 @@ func _advance_time(delta: float) -> void:
 		_ui.update_date_display()
 		_ui.update_year_display()
 
+func _on_screen_change() -> void:
+	for screen in _screens:
+		screen.hide()
+	match Global.screen:
+		Global.screens.GUILD: _guild_screen.show()
+		Global.screens.COMBAT: _combat_screen.show()
