@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://de6y14q4s6ie2"]
+
+[ext_resource type="Script" path="res://scenes/guild_screen_hero/guild_screen_hero.gd" id="1_svcw4"]
+
+[node name="GuildScreenHero" type="TextureButton"]
+script = ExtResource("1_svcw4")
