@@ -19,6 +19,21 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scenes/card/card.gd"
 }, {
+"base": "TextureButton",
+"class": &"GuildScreenHero",
+"language": &"GDScript",
+"path": "res://scenes/guild_screen_hero/guild_screen_hero.gd"
+}, {
+"base": "TextureButton",
+"class": &"HeroViewItem",
+"language": &"GDScript",
+"path": "res://scenes/equipment_view_item/hero_view_item.gd"
+}, {
+"base": "Unit",
+"class": &"Lifestealer",
+"language": &"GDScript",
+"path": "res://scripts/classes/lifestealer.gd"
+}, {
 "base": "Node",
 "class": &"MyClass",
 "language": &"GDScript",
@@ -37,6 +52,9 @@ _global_script_classes=[{
 _global_script_class_icons={
 "Amazon": "",
 "Card": "",
+"GuildScreenHero": "",
+"HeroViewItem": "",
+"Lifestealer": "",
 "MyClass": "",
 "Spell": "",
 "Unit": ""
