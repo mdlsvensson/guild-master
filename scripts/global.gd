@@ -6,6 +6,8 @@ enum screens {
 	COMBAT
 }
 var screen: int = screens.GUILD
+var screen_history: Array[int] = [0]
+var history_position: int = 0
 var paused: bool = false
 var time_scale: int = 1
 var time: Dictionary = {
