@@ -8,6 +8,7 @@ anchors_preset = 0
 offset_left = 240.0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 script = ExtResource("1_11thn")
 flow_container = NodePath("MarginContainer/PanelContainer/FlowContainer")
 metadata/_edit_lock_ = true
@@ -27,6 +28,7 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = 1676.0
 offset_bottom = 1076.0
+mouse_filter = 2
 
 [node name="FlowContainer" type="HFlowContainer" parent="MarginContainer/PanelContainer"]
 offset_right = 1672.0
