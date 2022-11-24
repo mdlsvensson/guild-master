@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0vbn0kev6e43"]
+
+[ext_resource type="Texture2D" uid="uid://cequq0dcjuy8i" path="res://assets/elements/window_bar/close.png" id="1_tegrk"]
+[ext_resource type="Texture2D" uid="uid://rhbddgvcw1dq" path="res://assets/elements/window_bar/close_hover.png" id="2_kmfe6"]
+
+[node name="View" type="PanelContainer"]
+offset_left = 260.0
+offset_top = 100.0
+offset_right = 740.0
+offset_bottom = 980.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_right = 480.0
+offset_bottom = 880.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 472.0
+offset_bottom = 872.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 464.0
+offset_bottom = 26.0
+theme_override_constants/separation = 4
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+offset_right = 20.0
+offset_bottom = 26.0
+texture_normal = ExtResource("1_tegrk")
+texture_hover = ExtResource("2_kmfe6")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 24.0
+offset_right = 464.0
+offset_bottom = 26.0
+size_flags_horizontal = 3
+text = "Nellie (Amazon, 15)"
+horizontal_alignment = 1
