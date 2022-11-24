@@ -49,9 +49,9 @@ func _ready() -> void:
 	var error_2 = _fast_forward_button.toggled.connect(_on_fast_forward_button_toggled)
 	if error_2: printerr("There was an error connecting _fast_forward_button 'toggled' signal in %s" % get_script())
 
-	var error_3 = _guild_button.pressed.connect(_on_guild_button_pressed)
+	var error_3 = _guild_button.pressed.connect(_on_sidebar_button_press.bind(Global.screens.GUILD))
 	if error_3: printerr("There was an error connecting _guild_button 'pressed' signal in %s" % get_script())
-	var error_4 = _combat_button.pressed.connect(_on_combat_button_pressed)
+	var error_4 = _combat_button.pressed.connect(_on_sidebar_button_press.bind(Global.screens.COMBAT))
 	if error_4: printerr("There was an error connecting _combat_button 'pressed' signal in %s" % get_script())
 
 	var error_5 = _back_button.pressed.connect(_on_back_button_pressed)
@@ -98,27 +98,27 @@ func _on_fast_forward_button_toggled(button_pressed: bool) -> void:
 	if button_pressed: Global.time_scale = 5
 	else: Global.time_scale = 1
 
-func _on_guild_button_pressed() -> void:
-	if Global.screen != Global.screens.GUILD:
-		Global.screen = Global.screens.GUILD
-		Global.screen_history.append(Global.screen)
+func _on_sidebar_button_press(screen: int) -> void:
+	if Global.screen != screen:
+		_cut_screen_history()
+		Global.screen = screen
+		Global.screen_history.append(screen)
+		Global.history_position = Global.screen_history.size() - 1
 		emit_signal("screen_change")
 
-func _on_combat_button_pressed() -> void:
-	if Global.screen != Global.screens.COMBAT:
-		Global.screen = Global.screens.COMBAT
-		Global.screen_history.append(Global.screen)
-		emit_signal("screen_change")
+func _cut_screen_history() -> void:
+	if Global.history_position < Global.screen_history.size() - 1:
+		Global.screen_history.resize(Global.history_position + 1)
 
 func _on_back_button_pressed() -> void:
-	if Global.screen_history.size() > 1:
-		Global.screen = Global.screen_history[(Global.screen_history.size() - 1) + Global.history_position]
+	if Global.history_position > 0:
 		Global.history_position -= 1
+		Global.screen = Global.screen_history[Global.history_position]
 		emit_signal("screen_change")
 
 func _on_forward_button_pressed() -> void:
-	if Global.history_position < 0:
+	if Global.history_position < Global.screen_history.size() - 1:
 		Global.history_position += 1
-		Global.screen = Global.screen_history[(Global.screen_history.size() - 1) + Global.history_position]
+		Global.screen = Global.screen_history[Global.history_position]
 		emit_signal("screen_change")
 
