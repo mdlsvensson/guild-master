@@ -15,6 +15,7 @@ combat_screen = NodePath("CombatScreen")
 [node name="UI" parent="CanvasLayer" instance=ExtResource("1_8umej")]
 
 [node name="GuildScreen" parent="." instance=ExtResource("3_e2d2r")]
+mouse_filter = 1
 
 [node name="CombatScreen" type="Control" parent="."]
 visible = false
