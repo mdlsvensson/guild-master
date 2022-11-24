@@ -1,6 +1,8 @@
 extends Control
 func get_class() -> String: return 'UI'
 
+signal screen_change
+
 var _play_pause_button: TextureButton
 var _fast_forward_button: TextureButton
 var _time_display: Label
@@ -44,6 +46,12 @@ func _ready() -> void:
 	var error_2 = _fast_forward_button.toggled.connect(_on_fast_forward_button_toggled)
 	if error_2: printerr("There was an error connecting _fast_forward_button 'toggled' signal in %s" % get_script())
 
+	var error_3 = _guild_button.pressed.connect(_on_guild_button_pressed)
+	if error_3: printerr("There was an error connecting _guild_button 'pressed' signal in %s" % get_script())
+
+	var error_4 = _combat_button.pressed.connect(_on_combat_button_pressed)
+	if error_4: printerr("There was an error connecting _combat_button 'pressed' signal in %s" % get_script())
+
 func update_time_display() -> void:
 	var hour_string: String
 	var minute_string: String
@@ -82,3 +90,14 @@ func _on_play_pause_button_pressed() -> void:
 func _on_fast_forward_button_toggled(button_pressed: bool) -> void:
 	if button_pressed: Global.time_scale = 5
 	else: Global.time_scale = 1
+
+func _on_guild_button_pressed() -> void:
+	if Global.screen != Global.screens.GUILD:
+		Global.screen = Global.screens.GUILD
+		emit_signal("screen_change")
+
+func _on_combat_button_pressed() -> void:
+	if Global.screen != Global.screens.COMBAT:
+		Global.screen = Global.screens.COMBAT
+		emit_signal("screen_change")
+
