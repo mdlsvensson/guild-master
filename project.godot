@@ -9,29 +9,35 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Unit",
+"class": &"Amazon",
+"language": &"GDScript",
+"path": "res://scripts/classes/amazon.gd"
+}, {
+"base": "PanelContainer",
+"class": &"Card",
+"language": &"GDScript",
+"path": "res://scenes/card/card.gd"
+}, {
 "base": "Node",
 "class": &"MyClass",
 "language": &"GDScript",
 "path": "res://script_templates/class.gd"
-}, {
-"base": "Node",
-"class": &"Preload",
-"language": &"GDScript",
-"path": "res://scripts/preload.gd"
 }, {
 "base": "RefCounted",
 "class": &"Spell",
 "language": &"GDScript",
 "path": "res://scripts/spell.gd"
 }, {
-"base": "PanelContainer",
+"base": "RefCounted",
 "class": &"Unit",
 "language": &"GDScript",
 "path": "res://scripts/unit.gd"
 }]
 _global_script_class_icons={
+"Amazon": "",
+"Card": "",
 "MyClass": "",
-"Preload": "",
 "Spell": "",
 "Unit": ""
 }
