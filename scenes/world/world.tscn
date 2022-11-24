@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cg5vl0voedbfw" path="res://scenes/ui/ui.tscn" id="1_8umej"]
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_xffl5"]
-[ext_resource type="PackedScene" uid="uid://yxiklelnnc54" path="res://scenes/amazon/amazon.tscn" id="3_4mik3"]
+[ext_resource type="PackedScene" uid="uid://dsb1d0brx24lk" path="res://scenes/guild_screen/guild_screen.tscn" id="3_e2d2r"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_xffl5")
@@ -14,36 +14,7 @@ combat_screen = NodePath("CombatScreen")
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("1_8umej")]
 
-[node name="GuildScreen" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 240.0
-offset_right = 1920.0
-offset_bottom = 1080.0
-metadata/_edit_lock_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="GuildScreen"]
-layout_mode = 0
-offset_right = 1680.0
-offset_bottom = 1080.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="PanelContainer" type="PanelContainer" parent="GuildScreen/MarginContainer"]
-layout_mode = 2
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 1676.0
-offset_bottom = 1076.0
-
-[node name="GridContainer" type="HFlowContainer" parent="GuildScreen/MarginContainer/PanelContainer"]
-layout_mode = 2
-offset_right = 1672.0
-offset_bottom = 1072.0
+[node name="GuildScreen" parent="." instance=ExtResource("3_e2d2r")]
 
 [node name="CombatScreen" type="Control" parent="."]
 visible = false
@@ -53,17 +24,3 @@ offset_left = 240.0
 offset_right = 1920.0
 offset_bottom = 1080.0
 metadata/_edit_lock_ = true
-
-[node name="Amazon" parent="CombatScreen" instance=ExtResource("3_4mik3")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -68.0
-offset_top = -189.0
-offset_right = 68.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 0
