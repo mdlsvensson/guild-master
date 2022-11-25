@@ -5,6 +5,18 @@ enum screens {
 	GUILD,
 	COMBAT
 }
+enum slots {
+	LEFT_HAND,
+	RIGHT_HAND,
+	HEAD,
+	ARMOR,
+	BOOTS,
+	RING_1,
+	RING_2,
+	NECK,
+	TRINKET_1,
+	TRINKET_2
+}
 var screen: int = screens.GUILD
 var screen_history: Array[int] = [0]
 var history_position: int = 0
