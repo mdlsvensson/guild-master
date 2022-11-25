@@ -1,24 +1,15 @@
 [gd_scene format=3 uid="uid://k1xxoiwqtk6q"]
 
 [node name="HeroView" type="HBoxContainer"]
-offset_top = 26.0
-offset_right = 464.0
-offset_bottom = 864.0
 size_flags_vertical = 3
 
 [node name="LeftItemRow" type="VFlowContainer" parent="."]
 layout_mode = 2
-offset_bottom = 838.0
 
 [node name="Stats" type="Control" parent="."]
 layout_mode = 2
 anchors_preset = 0
-offset_right = 464.0
-offset_bottom = 838.0
 size_flags_horizontal = 3
 
 [node name="RightItemRow" type="VFlowContainer" parent="."]
 layout_mode = 2
-offset_left = 464.0
-offset_right = 464.0
-offset_bottom = 838.0
