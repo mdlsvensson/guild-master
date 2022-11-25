@@ -27,7 +27,19 @@ var _stats: Dictionary = {
 	"evasion": null,
 	"accuracy": null,
 }
+var _bonus_stats: Dictionary = {
+	"hp": null,
+	"mp": null,
+	"power": null,
+	"brawn": null,
+	"finesse": null,
+	"agility": null,
+	"resolution": null,
+	"evasion": null,
+	"accuracy": null,
+}
 var _spells: Array[String]
+var _items: Array[Item]
 
 func _update_stats() -> void:
 	_stats["max_hp"] = _stats["baseline"]["hp"] + (_stats["brawn"] * Global.conversions["brawn"]["hp"])
@@ -38,3 +50,7 @@ func _update_stats() -> void:
 func get_portrait(size: String) -> Texture2D: return _portrait[size]
 
 func get_name_for_node() -> String: return _name
+
+func apply_stats(item: Item) -> void:
+	for stat in _bonus_stats:
+		if item.has_stat(stat): _bonus_stats[stat] = item.get_stat(stat)
