@@ -29,6 +29,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scenes/equipment_view_item/hero_view_item.gd"
 }, {
+"base": "RefCounted",
+"class": &"Item",
+"language": &"GDScript",
+"path": "res://scripts/item.gd"
+}, {
 "base": "Unit",
 "class": &"Lifestealer",
 "language": &"GDScript",
@@ -48,16 +53,23 @@ _global_script_classes=[{
 "class": &"Unit",
 "language": &"GDScript",
 "path": "res://scripts/unit.gd"
+}, {
+"base": "PanelContainer",
+"class": &"View",
+"language": &"GDScript",
+"path": "res://scenes/view/view.gd"
 }]
 _global_script_class_icons={
 "Amazon": "",
 "Card": "",
 "GuildScreenHero": "",
 "HeroViewItem": "",
+"Item": "",
 "Lifestealer": "",
 "MyClass": "",
 "Spell": "",
-"Unit": ""
+"Unit": "",
+"View": ""
 }
 
 [application]
