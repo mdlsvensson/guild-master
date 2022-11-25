@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://basw1tuup45t8"]
+[gd_scene load_steps=3 format=3 uid="uid://basw1tuup45t8"]
 
+[ext_resource type="Texture2D" uid="uid://bvwq2pqp1rnsb" path="res://assets/elements/hero_view/item_slot.png" id="1_4h4e6"]
 [ext_resource type="Script" path="res://scenes/equipment_view_item/hero_view_item.gd" id="1_iwqlu"]
 
 [node name="HeroViewItem" type="TextureButton"]
+texture_normal = ExtResource("1_4h4e6")
 script = ExtResource("1_iwqlu")
