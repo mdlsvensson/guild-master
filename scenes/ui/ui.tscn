@@ -163,5 +163,5 @@ offset_right = 230.0
 offset_bottom = 66.0
 text = "Combat"
 
-[node name="View" parent="." instance=ExtResource("10_pv0xp")]
+[node name="HeroView" parent="." instance=ExtResource("10_pv0xp")]
 layout_mode = 0
