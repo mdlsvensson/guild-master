@@ -24,8 +24,9 @@ var _stats: Dictionary = {
 	"finesse": null,
 	"agility": null,
 	"resolution": null,
-	"evasion": null,
 	"accuracy": null,
+	"evasion": null,
+	"range": null,
 }
 var _bonus_stats: Dictionary = {
 	"hp": null,
@@ -35,11 +36,23 @@ var _bonus_stats: Dictionary = {
 	"finesse": null,
 	"agility": null,
 	"resolution": null,
-	"evasion": null,
 	"accuracy": null,
+	"evasion": null,
+	"range": null,
 }
-var _spells: Array[String]
-var _items: Array[Item]
+var _items: Dictionary = {
+	"left_hand": null,
+	"head": null,
+	"armor": null,
+	"boots": null,
+	"ring_1": null,
+	"ring_2": null,
+	"neck": null,
+	"trinket_1": null,
+	"trinket_2": null
+}
+var _spells: Dictionary = {}
+var _bag: Dictionary = {}
 
 func _update_stats() -> void:
 	_stats["max_hp"] = _stats["baseline"]["hp"] + (_stats["brawn"] * Global.conversions["brawn"]["hp"])
@@ -48,6 +61,17 @@ func _update_stats() -> void:
 	_stats["evasion"] = _stats["agility"] * Global.conversions["agility"]["evasion"]
 
 func get_portrait(size: String) -> Texture2D: return _portrait[size]
+
+func get_data() -> Dictionary:
+	return {
+		"name": _name,
+		"portrait": _portrait,
+		"stats": _stats,
+		"bonus_stats": _bonus_stats,
+		"items": _items,
+		"spells": _spells,
+		"bag": _bag
+	}
 
 func get_name_for_node() -> String: return _name
 
