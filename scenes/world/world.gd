@@ -1,5 +1,4 @@
 extends Node2D
-func get_class() -> String: return "World"
 # A template for gdscript classes following the Godot documentation style guide
 
 @export_node_path(Control) var ui: NodePath
@@ -14,15 +13,8 @@ var _guild: Array[Unit]
 var _screens: Array[Control]
 
 func _ready() -> void:
-	_ui = get_node_or_null(ui)
-	if !_ui: printerr('Path to UI node returned null | [%s]' % get_script())
-	_guild_screen = get_node_or_null(guild_screen)
-	if !_guild_screen: printerr('Path to GuildScreen node returned null | [%s]' % get_script())
-	_combat_screen = get_node_or_null(combat_screen)
-	if !_combat_screen: printerr('Path to CombatScreen node returned null | [%s]' % get_script())
-
-	var error_1 = _ui.screen_change.connect(_on_screen_change)
-	if error_1: printerr("There was an error connecting _ui 'screen_change' signal in %s" % get_script())
+	_resolve_node_paths()
+	_signals()
 
 	var heroes = [Amazon.new(), Lifestealer.new()]
 
@@ -72,12 +64,30 @@ func _advance_time(delta: float) -> void:
 		_ui.update_date_display()
 		_ui.update_year_display()
 
-func _on_screen_change() -> void:
-	for screen in _screens:
-		screen.hide()
-	match Global.screen:
-		Global.screens.GUILD: _guild_screen.show()
-		Global.screens.COMBAT: _combat_screen.show()
+func _resolve_node_paths() -> void:
+	_ui = get_node_or_null(ui)
+	if !_ui: printerr('Path to UI node returned null | [%s]' % get_script())
+	_guild_screen = get_node_or_null(guild_screen)
+	if !_guild_screen: printerr('Path to GuildScreen node returned null | [%s]' % get_script())
+	_combat_screen = get_node_or_null(combat_screen)
+	if !_combat_screen: printerr('Path to CombatScreen node returned null | [%s]' % get_script())
+
+func _signals() -> void:
+	var error_1 = _ui.screen_change.connect(
+		func() -> void:
+			for screen in _screens:
+				screen.hide()
+			match Global.screen:
+				Global.screens.GUILD: _guild_screen.show()
+				Global.screens.COMBAT: _combat_screen.show()
+	)
+	if error_1: printerr("There was an error connecting _ui 'screen_change' signal in %s" % get_script())
 
 func _on_guild_screen_hero_hero_pressed(hero: Unit) -> void:
-	pass
+	var hero_view = preload("res://scenes/hero_view/hero_view.tscn").instantiate()
+	hero_view.set_data(hero.get_data())
+	
+	for view in _ui.get_views():
+		if view.visible and view.get_index() != 2: continue
+		view.set_view(hero_view)
+		break
