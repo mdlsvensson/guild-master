@@ -9,4 +9,6 @@ func _ready() -> void:
 	_vbox = get_node_or_null(v_box)
 	if !_vbox: printerr('No valid path to VBoxContainer node | [%s]' % get_script())
 
-func set_view(view_root_node: Control) -> void: _vbox.add_child(view_root_node)
+func set_view(view_root_node: Control) -> void: 
+	_vbox.add_child(view_root_node)
+	show()
